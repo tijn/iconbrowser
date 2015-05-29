@@ -1,12 +1,22 @@
-ICON_SETS = [
-  ['Flaticons Social', '/Users/dave/Pictures/icons/Flaticons/flaticons_social/SVGs'],
-  ['Flaticons Solid', '/Users/dave/Pictures/icons/Flaticons/flaticons_solid/SVGs'],
-  ['Flaticons Stroke', '/Users/dave/Pictures/icons/Flaticons/flaticons_stroke/SVGs'],
+# an example:
+#
+# Dave (I don"t know who Dave is) has a MacBook, so his homedirectory can be found here:
 
-  # My own icons
-  ["Dave's own icons", '/Users/dave/Pictures/icons/Dave/'],
+HOME = "/Users/dave"
+
+# Dave keeps several icon sets in a subdirectory icons in ~/Pictures
+# We're supposed to list them here, one by one with their name followed by the path.
+
+ICON_SETS = [
+  # Flaticons from https://flaticons.co/
+  ["Flaticons Social", "#{HOME}/Pictures/icons/Flaticons/flaticons_social/SVGs"],
+  ["Flaticons Solid", "#{HOME}/Pictures/icons/Flaticons/flaticons_solid/SVGs"],
+  ["Flaticons Stroke", "#{HOME}/Pictures/icons/Flaticons/flaticons_stroke/SVGs"],
+
+  # My self-drawn doodles:
+  ["Dave's own icons", "#{HOME}/Pictures/icons/Dave/"],
 
   # the icons we are using for our awesome product:
-  ['The Icons 1000', '/Users/dave/Pictures/icons/theicons-1000/SVG'],
-  ['Stroke Gap Icons', '/Users/dave/Pictures/icons/Stroke-Gap-Icons-Webfont/SVG']
+  ["The Icons 1000", "#{HOME}/Pictures/icons/theicons-1000/SVG"],
+  ["Stroke Gap Icons", "#{HOME}/Pictures/icons/Stroke-Gap-Icons-Webfont/SVG"]
 ]
