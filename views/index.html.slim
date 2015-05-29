@@ -1,0 +1,24 @@
+head
+  title Icons
+  link rel='stylesheet' href='/app.css'
+  script src="/sprint.min.js"
+  script src="/search.js"
+
+body
+  input id='search' placeholder='search'
+
+  h1 Sets
+
+  - SETS.keys.each do |key|
+    label
+      input.set type='checkbox' value=key checked='checked'
+      = key
+    br
+
+  - SETS.each do |key, set|
+    section data-name=set
+      h1 = set
+      - set.icons.each do |icon|
+        figure data-name=icon.name
+          img src="/icon/#{set}/#{icon.path}"
+          figcaption = icon.name

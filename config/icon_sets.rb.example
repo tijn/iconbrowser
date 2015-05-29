@@ -1,0 +1,12 @@
+ICON_SETS = [
+  ['Flaticons Social', '/Users/dave/Pictures/icons/Flaticons/flaticons_social/SVGs'],
+  ['Flaticons Solid', '/Users/dave/Pictures/icons/Flaticons/flaticons_solid/SVGs'],
+  ['Flaticons Stroke', '/Users/dave/Pictures/icons/Flaticons/flaticons_stroke/SVGs'],
+
+  # My own icons
+  ["Dave's own icons", '/Users/dave/Pictures/icons/Dave/'],
+
+  # the icons we are using for our awesome product:
+  ['The Icons 1000', '/Users/dave/Pictures/icons/theicons-1000/SVG'],
+  ['Stroke Gap Icons', '/Users/dave/Pictures/icons/Stroke-Gap-Icons-Webfont/SVG']
+]
