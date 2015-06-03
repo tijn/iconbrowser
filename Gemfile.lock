@@ -6,7 +6,6 @@ GEM
       execjs
     coffee-script-source (1.9.1)
     execjs (2.4.0)
-    memoist (0.11.0)
     rack (1.6.1)
     rack-protection (1.5.3)
       rack
@@ -29,7 +28,6 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-script
-  memoist
   rake
   sass
   shotgun

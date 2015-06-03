@@ -13,19 +13,29 @@ class IconSet
     @name
   end
 
-  memoize def icons
+  def icons
     Dir.chdir(path) do
-      Dir.glob("**/*.svg").map { |path| Icon.new(path) }
+      Dir.glob("**/*.svg").sort.map { |path| Icon.new(path, group(path)) }
+    end
+  end
+
+  def group(icon_path)
+    icon_dir = File.dirname(icon_path)
+    if icon_dir == '.'
+      nil
+    else
+      icon_dir.split('/').last
     end
   end
 end
 
 
 class Icon
-  attr_accessor :path
+  attr_accessor :path, :group
 
-  def initialize(path)
+  def initialize(path, group = nil)
     @path = path
+    @group = group
   end
 
   def name
