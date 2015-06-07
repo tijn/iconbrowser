@@ -1,7 +1,4 @@
-require 'memoist'
-
 class IconSet
-  extend Memoist
   attr_accessor :name, :path
 
   def initialize(name, path)
