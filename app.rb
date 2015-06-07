@@ -32,6 +32,11 @@ get '/icon/:set/*' do
   send_file filename
 end
 
+get '/favicon/*' do
+  puts "favicon", params['splat'], File.dirname(__FILE__) +  "/views/favicon/#{params['splat']}"
+  send_file File.dirname(__FILE__) +  "/views/favicon/#{params['splat'].first}"
+end
+
 get '/app.css' do
   sass :app
 end
