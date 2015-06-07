@@ -12,7 +12,9 @@ class IconSet
 
   def icons
     Dir.chdir(path) do
-      Dir.glob("**/*.svg").sort.map { |path| Icon.new(path, group(path)) }
+      Dir.glob("**/*.svg")
+        .map { |path| Icon.new(path, group(path)) }
+        .sort_by { |icon| [icon.group, icon.path] }
     end
   end
 
