@@ -12,29 +12,25 @@ class IconSet
 
   def icons
     Dir.chdir(path) do
-      Dir.glob("**/*.svg")
-        .map { |path| Icon.new(path, group(path)) }
-        .sort_by { |icon| [icon.group, icon.path] }
+      Dir.glob("**/*.svg").map { |path| Icon.new(path) }.sort
     end
   end
 
-  def group(icon_path)
-    icon_dir = File.dirname(icon_path)
-    if icon_dir == '.'
-      nil
-    else
-      icon_dir.split('/').last
-    end
-  end
 end
 
 
 class Icon
   attr_accessor :path, :group
 
-  def initialize(path, group = nil)
+  def initialize(path)
     @path = path
-    @group = group
+    @group = fetch_group
+  end
+
+  def fetch_group(icon_path = @path)
+    icon_dir = File.dirname(icon_path)
+    return nil if icon_dir == '.'
+    icon_dir.split('/').last
   end
 
   def name
@@ -42,6 +38,15 @@ class Icon
   end
 
   def to_s
-    name
+    [group, name].compact.join(' - ')
+  end
+
+  def <=>(other)
+    puts 'compare', self, other
+    if group.to_s == other.group.to_s
+      path <=> other.path
+    else
+      group.to_s <=> other.group.to_s
+    end
   end
 end
