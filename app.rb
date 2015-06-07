@@ -9,7 +9,7 @@ require_relative 'config/icon_sets.rb'
 
 SETS = {}
 ICON_SETS.sort.each do |set|
-  SETS[set.first] = IconSet.new(set.first, set.last)
+  SETS[set.first] = IconSet.new(*set)
 end
 
 configure do
