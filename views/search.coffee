@@ -26,9 +26,11 @@ $ ->
         else
           $fig.addClass('hidden')
 
+    lazy_load()
 
-  # Toggle icon sets
 
+# Toggle icon sets
+$ ->
   $('input.set').on 'change', (event) ->
     console.log(event)
     checkbox = $(event.currentTarget)
@@ -40,3 +42,56 @@ $ ->
       section.removeClass('hidden')
     else
       section.addClass('hidden')
+    lazy_load()
+
+# Lazy loading
+$ ->
+  $window = $(window)
+  scheduled = false
+
+  margin = 300
+
+  in_viewport = (element) ->
+    $element = $(element)
+
+    window_top = $window.scrollTop() - margin
+    window_bottom = $window.height() + margin
+
+    offset = $element.offset()
+    top = offset.top
+    bottom = top + $element.height()
+
+    return (bottom > 0 && top < window_bottom)
+
+  load_img = (element) ->
+    $element = $(element)
+    return if $element.attr('src')
+    $element.attr('src', $element.attr('data-src'))
+    # $element.removeAttr('data-src')
+
+  $('img').on 'load', (event) ->
+    $element = $(event.currentTarget)
+    $element.removeAttr('data-src')
+
+  window.lazy_load = () ->
+    $("img[data-src]").each (i, element) ->
+      if in_viewport(element)
+        load_img(element)
+
+  # window.mark_visible = () ->
+  #   $("img[data-src]").each (i, element) ->
+  #     $(element).toggleClass('mark', in_viewport(element))
+
+  schedule_lazy_load = () ->
+    if scheduled == false
+      scheduled = true
+      setTimeout ( ->
+        lazy_load()
+        scheduled = false
+      ), 500
+
+  $(document).on 'scroll', (event) ->
+    schedule_lazy_load()
+  $(document).on 'resize', (event) ->
+    schedule_lazy_load()
+  lazy_load()

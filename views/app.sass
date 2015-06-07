@@ -35,7 +35,11 @@ figure
     height: 48px
     max-height: 48px
     max-width: 48px
-    // opacity: 0.9
+    opacity: 1.0
+    transition: opacity 1s
+
+    &[data-src]
+      opacity: 0.0
 
   figcaption
     position: absolute
