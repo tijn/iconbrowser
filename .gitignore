@@ -1,3 +1,4 @@
 tmp/*
 .sass-cache
 config/icon_sets.rb
+.ruby-version
