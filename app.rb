@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require 'coffee-script'
 require 'sass'
 require 'sinatra'
