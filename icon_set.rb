@@ -1,10 +1,10 @@
 class IconSet
   attr_accessor :name, :path, :licence
 
-  def initialize(name, path, licence = nil)
+  def initialize(name, path, license = nil)
     @name = name
     @path = path
-    @licence = licence
+    @license = license
   end
 
   def to_s
