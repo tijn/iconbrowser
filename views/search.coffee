@@ -44,6 +44,7 @@ $ ->
       section.addClass('hidden')
     lazy_load()
 
+
 # Lazy loading
 $ ->
   $window = $(window)
