@@ -17,6 +17,9 @@ class IconSet
     end
   end
 
+  def groups
+    icons.group_by(&:group)
+  end
 end
 
 

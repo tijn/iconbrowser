@@ -6,26 +6,22 @@ head
   == erb :"favicons.html"
 
 body
-  .search
-    input id='search' placeholder='search' autofocus=true
+  nav
+    input.search id='search' placeholder='search' autofocus=true
 
-  h1 Sets
-
+  h1 Icon Sets
   - SETS.keys.each do |key|
     label
-      input.set type='checkbox' value=key checked='checked'
-      = key
-    br
+      input.set type='checkbox' value=key checked='checked' = key
+
 
   - SETS.each do |key, set|
-    section data-name=set
+    section.iconset data-name=set
       h1 = set
-      - current_group = nil
-      - set.icons.each do |icon|
-        - if icon.group != current_group
-          - current_group = icon.group
-          h2 = current_group unless current_group.nil?
-
-        figure data-name=icon.name
-          img data-src="/icon/#{set}/#{icon.path}"
-          figcaption = icon.name
+      - set.groups.each do |group, icons|
+        section.icongroup
+          h2 = group unless group.to_s.empty?
+          - icons.each do |icon|
+            figure data-name=icon.name
+              img data-src="/icon/#{set}/#{icon.path}"
+              figcaption = icon.name
