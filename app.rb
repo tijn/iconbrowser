@@ -36,7 +36,6 @@ get '/icon/:set/*' do
 end
 
 get '/favicon/*' do
-  puts "favicon", params['splat'], File.dirname(__FILE__) +  "/views/favicon/#{params['splat']}"
   send_file File.dirname(__FILE__) +  "/views/favicon/#{params['splat'].first}"
 end
 

@@ -43,7 +43,6 @@ class Icon
   end
 
   def <=>(other)
-    puts 'compare', self, other
     if group.to_s == other.group.to_s
       path <=> other.path
     else
