@@ -5,6 +5,7 @@ body
   width: 980px
   padding-top: 20px
   color: #333
+  padding-top: 70px
 
 h1
   font-size: 18px
@@ -15,15 +16,22 @@ h2
   font-weight: bold
 
 
-.search
+nav
   position: fixed
-  top: 20px
-  right: 20px
+  left: 0
+  right: 0
+  top: 0
+  padding: 10px 30px
   background: #eee
-  border-radius: 4px
-  padding: 10px
   z-index: 10
   box-shadow: 0px 3px 20px 0px rgba(0,0,0,0.5)
+
+label
+  display: block
+  line-height: 1.6
+
+.search
+  float: right
 
 figure
   display: inline-block
@@ -65,3 +73,14 @@ figure
 
 .selected
   background-color: #eee
+
+.is-searching
+  .iconset, .icongroup
+    display: none
+    &.is-active
+      display: block
+
+  figure
+    display: none
+    &.is-match
+      display: inline-block

@@ -13,7 +13,10 @@ $ ->
     if query.every( (x) -> x == "")
       # console.log('no query')
       $('figure').removeClass('hidden')
+      $('body').removeClass('is-searching')
     else
+      $('.iconset, .icongroup').removeClass('is-active')
+      $('body').addClass('is-searching')
       $('figure').each (index, fig) ->
         $fig = $(fig)
         names = $fig.attr('data-name').toLowerCase().split(' ')
@@ -22,9 +25,10 @@ $ ->
             name.search(q) > -1
 
         if matching
-          $fig.removeClass('hidden')
+          $fig.addClass('is-match')
+          $fig.parents('.iconset, .icongroup').addClass('is-active')
         else
-          $fig.addClass('hidden')
+          $fig.removeClass('is-match')
 
     lazy_load()
 
