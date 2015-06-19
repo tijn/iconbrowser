@@ -8,8 +8,9 @@ head
 body
   nav
     input.search id='search' placeholder='search' autofocus=true
+    h1 iconbrowser
 
-  h1 Icon Sets
+  h1#sets Icon Sets
   - SETS.keys.each do |key|
     label
       input.set type='checkbox' value=key checked='checked' = key
