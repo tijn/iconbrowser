@@ -21,7 +21,10 @@ body
         h1 = set
         - set.groups.each do |group, icons|
           section.icongroup
-            h2 = group unless group.to_s.empty?
+            - unless group.to_s.empty?
+              h2
+                = group
+                span = set
             - icons.each do |icon|
               figure data-name=icon.name.downcase
                 img data-src="/icon/#{set}/#{icon.path}"
