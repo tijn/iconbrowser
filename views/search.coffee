@@ -18,7 +18,6 @@ $ ->
       selectors = query.map (item, i) ->
         '.icons figure:not([data-name*="' + item.replace(/\"/g, '\\\"') + '"])'
       css = selectors.join(', ') + '{ display: none; }'
-    console.log(css)
     $('#searchStyle').text(css)
     lazy_load()
 
