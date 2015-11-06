@@ -6,41 +6,29 @@ Array.prototype.every ?= (f) ->
   (return false if not f x) for x in @
   return true
 
+# Search
 $ ->
   $('#search').on 'keyup', (event) ->
     query = event.currentTarget.value.toLowerCase().split(' ')
-    # console.log(query)
+    query.filter (term, i) ->
+      term.length == 0
     if query.every( (x) -> x == "")
-      # console.log('no query')
-      $('figure').removeClass('hidden')
-      $('body').removeClass('is-searching')
+      css = ''
     else
-      $('.iconset, .icongroup').removeClass('is-active')
-      $('body').addClass('is-searching')
-      $('figure').each (index, fig) ->
-        $fig = $(fig)
-        names = $fig.attr('data-name').toLowerCase().split(' ')
-        matching = query.every (q) ->
-          names.some (name) ->
-            name.search(q) > -1
-
-        if matching
-          $fig.addClass('is-match')
-          $fig.parents('.iconset, .icongroup').addClass('is-active')
-        else
-          $fig.removeClass('is-match')
-
+      selectors = query.map (item, i) ->
+        '.icons figure:not([data-name*="' + item.replace(/\"/g, '\\\"') + '"])'
+      css = selectors.join(', ') + '{ display: none; }'
+    console.log(css)
+    $('#searchStyle').text(css)
     lazy_load()
 
 
 # Toggle icon sets
 $ ->
   $('input.set').on 'change', (event) ->
-    console.log(event)
     checkbox = $(event.currentTarget)
     name = checkbox.attr('value')
     checked = checkbox.is(':checked')
-    console.log(checkbox, name, checked)
     section = $("section[data-name='" + name + "']")
     if checked
       section.removeClass('hidden')
@@ -50,23 +38,24 @@ $ ->
 
 
 # Lazy loading
+inViewport = (element) ->
+  if typeof jQuery == "function" && element instanceof jQuery
+    element = element[0];
+
+  rect = element.getBoundingClientRect();
+
+  return (
+    rect.top >= 0 &&
+    rect.left >= 0 &&
+    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && # or $(window).height()
+    rect.right <= (window.innerWidth || document.documentElement.clientWidth) # or $(window).width()
+    )
+
 $ ->
   $window = $(window)
   scheduled = false
 
   margin = 300
-
-  in_viewport = (element) ->
-    $element = $(element)
-
-    window_top = $window.scrollTop() - margin
-    window_bottom = $window.height() + margin
-
-    offset = $element.offset()
-    top = offset.top
-    bottom = top + $element.height()
-
-    return (bottom > 0 && top < window_bottom)
 
   load_img = (element) ->
     $element = $(element)
@@ -80,12 +69,12 @@ $ ->
 
   window.lazy_load = () ->
     $("img[data-src]").each (i, element) ->
-      if in_viewport(element)
+      if inViewport(element)
         load_img(element)
 
   # window.mark_visible = () ->
   #   $("img[data-src]").each (i, element) ->
-  #     $(element).toggleClass('mark', in_viewport(element))
+  #     $(element).toggleClass('mark', inViewport(element))
 
   schedule_lazy_load = () ->
     if scheduled == false

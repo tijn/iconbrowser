@@ -15,14 +15,14 @@ body
     label
       input.set type='checkbox' value=key checked='checked' = key
 
-
-  - SETS.each do |key, set|
-    section.iconset data-name=set
-      h1 = set
-      - set.groups.each do |group, icons|
-        section.icongroup
-          h2 = group unless group.to_s.empty?
-          - icons.each do |icon|
-            figure data-name=icon.name
-              img data-src="/icon/#{set}/#{icon.path}"
-              figcaption = icon.name
+  .icons
+    - SETS.each do |key, set|
+      section.iconset data-name=set
+        h1 = set
+        - set.groups.each do |group, icons|
+          section.icongroup
+            h2 = group unless group.to_s.empty?
+            - icons.each do |icon|
+              figure data-name=icon.name.downcase
+                img data-src="/icon/#{set}/#{icon.path}"
+                figcaption = icon.name
