@@ -95,8 +95,9 @@ $ ->
         scheduled = false
       ), 500
 
-  $(document).on 'scroll', (event) ->
+  $(window).on 'scroll resize', (event) ->
     schedule_lazy_load()
-  $(document).on 'resize', (event) ->
-    schedule_lazy_load()
+
   lazy_load()
+
+  $('body').append('<style id="searchStyle"/>')
