@@ -58,8 +58,7 @@ $ ->
 
   window.lazyLoad = () ->
     $("img[data-src]").each (i, element) ->
-      if inViewport(element)
-        loadImage(element)
+      loadImage(element) if inViewport(element)
 
   # window.mark_visible = () ->
   #   $("img[data-src]").each (i, element) ->
