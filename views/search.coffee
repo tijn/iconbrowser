@@ -14,7 +14,7 @@ $ ->
     selectors = ("figure:not([data-name*='#{term}'])" for term in query when term.length )
     css = if selectors.length then selectors.join(', ') + '{ display: none; }' else ""
     $('#searchStyle').text(css)
-    lazy_load()
+    scheduleLazyLoad()
 
 
   # Toggle icon sets
@@ -23,7 +23,7 @@ $ ->
     name = $checkbox.attr('value')
     checked = $checkbox.is(':checked')
     $("section[data-name='" + name + "']").toggleClass('hidden', !checked)
-    lazy_load()
+    scheduleLazyLoad()
 
 
 # Lazy loading
@@ -36,8 +36,8 @@ inViewport = (element) ->
   return (
     rect.top >= 0 &&
     rect.left >= 0 &&
-    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && # or $(window).height()
-    rect.right <= (window.innerWidth || document.documentElement.clientWidth) # or $(window).width()
+    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && # or $(window).height() ??
+    rect.right <= (window.innerWidth || document.documentElement.clientWidth) # or $(window).width() ??
     )
 
 $ ->
@@ -46,7 +46,7 @@ $ ->
 
   margin = 300
 
-  load_img = (element) ->
+  loadImage = (element) ->
     $element = $(element)
     return if $element.attr('src')
     $element.attr('src', $element.attr('data-src'))
@@ -56,26 +56,26 @@ $ ->
     $element = $(event.currentTarget)
     $element.removeAttr('data-src')
 
-  window.lazy_load = () ->
+  window.lazyLoad = () ->
     $("img[data-src]").each (i, element) ->
       if inViewport(element)
-        load_img(element)
+        loadImage(element)
 
   # window.mark_visible = () ->
   #   $("img[data-src]").each (i, element) ->
   #     $(element).toggleClass('mark', inViewport(element))
 
-  schedule_lazy_load = () ->
+  window.scheduleLazyLoad = () ->
     if scheduled == false
       scheduled = true
       setTimeout ( ->
-        lazy_load()
+        lazyLoad()
         scheduled = false
-      ), 500
+      ), 800
 
   $(window).on 'scroll resize', (event) ->
-    schedule_lazy_load()
+    scheduleLazyLoad()
 
-  lazy_load()
+  scheduleLazyLoad()
 
   $('body').append('<style id="searchStyle"/>')
