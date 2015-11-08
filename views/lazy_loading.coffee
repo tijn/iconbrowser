@@ -33,4 +33,3 @@ $(window).on 'scroll resize', (event) ->
 
 $ ->
   scheduleLazyLoad()
-
