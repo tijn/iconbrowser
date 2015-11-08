@@ -49,20 +49,10 @@ $ ->
   loadImage = (element) ->
     $element = $(element)
     return if $element.attr('src')
-    $element.attr('src', $element.attr('data-src'))
-    # $element.removeAttr('data-src')
-
-  $('img').on 'load', (event) ->
-    $element = $(event.currentTarget)
-    $element.removeAttr('data-src')
+    $element.attr('src', $element.attr('data-src')).removeAttr('data-src')
 
   window.lazyLoad = () ->
-    $("img[data-src]").each (i, element) ->
-      loadImage(element) if inViewport(element)
-
-  # window.mark_visible = () ->
-  #   $("img[data-src]").each (i, element) ->
-  #     $(element).toggleClass('mark', inViewport(element))
+    loadImage(img) for img in ($("img[data-src]").dom) when inViewport(img)
 
   window.scheduleLazyLoad = () ->
     if scheduled == false
