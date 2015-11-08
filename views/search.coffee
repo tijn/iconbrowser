@@ -7,8 +7,8 @@ Array.prototype.every ?= (f) ->
   return true
 
 
-# Search
 $ ->
+  # Search
   $('#search').on 'keyup', (event) ->
     query = event.currentTarget.value.toLowerCase().replace(/\'/g, '\\\'').split(' ')
     selectors = ("figure:not([data-name*='#{term}'])" for term in query when term.length )
@@ -17,17 +17,12 @@ $ ->
     lazy_load()
 
 
-# Toggle icon sets
-$ ->
+  # Toggle icon sets
   $('input.set').on 'change', (event) ->
-    checkbox = $(event.currentTarget)
-    name = checkbox.attr('value')
-    checked = checkbox.is(':checked')
-    section = $("section[data-name='" + name + "']")
-    if checked
-      section.removeClass('hidden')
-    else
-      section.addClass('hidden')
+    $checkbox = $(event.currentTarget)
+    name = $checkbox.attr('value')
+    checked = $checkbox.is(':checked')
+    $("section[data-name='" + name + "']").toggleClass('hidden', !checked)
     lazy_load()
 
 
