@@ -6,18 +6,13 @@ Array.prototype.every ?= (f) ->
   (return false if not f x) for x in @
   return true
 
+
 # Search
 $ ->
   $('#search').on 'keyup', (event) ->
-    query = event.currentTarget.value.toLowerCase().split(' ')
-    query.filter (term, i) ->
-      term.length == 0
-    if query.every( (x) -> x == "")
-      css = ''
-    else
-      selectors = query.map (item, i) ->
-        '.icons figure:not([data-name*="' + item.replace(/\"/g, '\\\"') + '"])'
-      css = selectors.join(', ') + '{ display: none; }'
+    query = event.currentTarget.value.toLowerCase().replace(/\'/g, '\\\'').split(' ')
+    selectors = ("figure:not([data-name*='#{term}'])" for term in query when term.length )
+    css = if selectors.length then selectors.join(', ') + '{ display: none; }' else ""
     $('#searchStyle').text(css)
     lazy_load()
 
