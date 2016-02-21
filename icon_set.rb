@@ -1,10 +1,26 @@
-class IconSet
-  attr_accessor :name, :path, :licence
+class Object
+  def blank?
+    respond_to?(:empty?) ? !!empty? : !self
+  end
 
-  def initialize(name, path, license = nil)
+  def present?
+    !blank?
+  end
+
+  def presence
+    self if present?
+  end
+end
+
+class IconSet
+  attr_accessor :name, :path, :license, :license_hint
+
+  def initialize(name, path, options = {})
+    puts name, path, options
     @name = name
     @path = path
-    @license = license
+    @license = options[:license].presence
+    @license_hint = options[:license_hint].presence || 'license'
   end
 
   def to_s
@@ -21,7 +37,6 @@ class IconSet
     icons.group_by(&:group)
   end
 end
-
 
 class Icon
   attr_accessor :path, :group

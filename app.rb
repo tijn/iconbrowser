@@ -14,7 +14,8 @@ require_relative 'config/icon_sets.rb'
 
 SETS = {}
 ICON_SETS.sort.each do |set|
-  SETS[set.first] = IconSet.new(*set)
+  puts set.inspect
+  SETS[set.first] = IconSet.new(set[0], set[1], license: set[2], license_hint: set[3].presence)
 end
 
 configure do
@@ -35,6 +36,11 @@ get '/icon/:set/*' do
   cache_control :public, :max_age => 86400 # may be cached for up to one day
   last_modified File.mtime(filename)
   send_file filename
+end
+
+get '/license/:set' do
+  set = SETS.fetch(params['set'])
+  send_file set.license
 end
 
 get '/favicon/*' do

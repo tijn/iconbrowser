@@ -19,7 +19,15 @@ body
   .icons
     - SETS.each do |key, set|
       section.iconset data-name=set
-        h1 = set
+        h1
+          = set
+          | &nbsp;
+          - if set.license.present?
+            - if set.license.start_with? '/'
+              a href="/license/#{set}" = set.license_hint
+            - else
+              a href=set.license = set.license_hint
+
         - set.groups.each do |group, icons|
           section.icongroup
             - unless group.to_s.empty?
