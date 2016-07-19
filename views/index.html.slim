@@ -12,29 +12,16 @@ body
     h1 iconbrowser
 
   h1#sets Icon Sets
-  - SETS.keys.each do |key|
-    label
-      input.set type='checkbox' value=key checked='checked' = key
+  .row
+    .column
+      - @sets.keys.each do |key|
+        label
+          input.set type='checkbox' value=key checked='checked' = key
+    .column
+      ul
+      - @sets.keys.each do |key|
+        li: a href="/set/#{key}" = key
 
   .icons
-    - SETS.each do |key, set|
-      section.iconset data-name=set
-        h1
-          = set
-          | &nbsp;
-          - if set.license.present?
-            - if set.license.start_with? '/'
-              a href="/license/#{set}" = set.license_hint
-            - else
-              a href=set.license = set.license_hint
-
-        - set.groups.each do |group, icons|
-          section.icongroup
-            - unless group.to_s.empty?
-              h2
-                = group
-                span = set
-            - icons.each do |icon|
-              figure data-name=icon.name.downcase
-                img data-src="/icon/#{set}/#{icon.path}"
-                figcaption = icon.name
+    - @sets.each do |key, set|
+      == slim :"_icon_set.html", locals: { set: set }

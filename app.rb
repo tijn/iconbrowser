@@ -23,7 +23,13 @@ configure do
 end
 
 get('/') do
+  @sets = SETS
   slim :'index.html'
+end
+
+get '/set/:set' do
+  @set = SETS[params['set']]
+  slim :'set.html'
 end
 
 get '/icon/:set/*' do
