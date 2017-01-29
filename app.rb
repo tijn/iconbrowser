@@ -26,6 +26,7 @@ get('/') do
   slim :'index.html'
 end
 
+ONE_WEEK = 86_400 * 7
 get '/icon/:set/*' do
   set = SETS.fetch(params['set'])
 
@@ -33,7 +34,7 @@ get '/icon/:set/*' do
   icon_name.gsub!('..', '')
   filename = [set.path, icon_name].join('/')
 
-  cache_control :public, :max_age => 86400 # may be cached for up to one day
+  expires ONE_WEEK, :public
   last_modified File.mtime(filename)
   send_file filename
 end
