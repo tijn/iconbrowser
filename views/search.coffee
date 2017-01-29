@@ -25,3 +25,7 @@ $ ->
     checked = $checkbox.is(':checked')
     $("section[data-name='" + name + "']").toggleClass('hidden', !checked)
     scheduleLazyLoad()
+
+  $('button#delesect').on 'click', (event) ->
+    $form = $(event.currentTarget).closest('form')
+    $form.find('input.set').prop('checked', false)

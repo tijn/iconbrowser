@@ -11,10 +11,12 @@ body
     input.search id='search' placeholder='search' autofocus=true
     h1 iconbrowser
 
-  h1#sets Icon Sets
-  - SETS.keys.each do |key|
-    label
-      input.set type='checkbox' value=key checked='checked' = key
+  form
+    h1#sets Icon Sets
+    button#delesect Deselect all
+    - SETS.keys.each do |key|
+      label
+        input.set type='checkbox' value=key checked='checked' = key
 
   .icons
     - SETS.each do |key, set|
