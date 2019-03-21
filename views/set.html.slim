@@ -1,0 +1,17 @@
+head
+  title = "#{@set} - Icons"
+  link rel='stylesheet' href='/app.css'
+  script src="/sprint.min.js"
+  script src="/lazy_loading.js"
+  script src="/search.js"
+  == erb :"favicons.html"
+
+body
+  nav
+    input.search id='search' placeholder='search' autofocus=true
+    h1 iconbrowser
+
+  p
+    a href="/" Back
+
+  .icons == slim :"_icon_set.html", locals: { set: @set }

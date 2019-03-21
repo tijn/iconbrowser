@@ -23,10 +23,17 @@ configure do
 end
 
 get('/') do
+  @sets = SETS
   slim :'index.html'
 end
 
 ONE_WEEK = 86_400 * 7
+
+get '/set/:set' do
+  @set = SETS[params['set']]
+  slim :'set.html'
+end
+
 get '/icon/:set/*' do
   set = SETS.fetch(params['set'])
 
