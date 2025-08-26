@@ -16,5 +16,5 @@ section.iconset data-name=set
           span = set
       - icons.each do |icon|
         figure data-name=icon.name.downcase
-          img data-src="/icon/#{set}/#{icon.path}"
+          img loading="lazy" src="/icon/#{set}/#{icon.path}"
           figcaption = icon.name

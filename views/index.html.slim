@@ -1,9 +1,6 @@
 head
   title Icons
   link rel='stylesheet' href='/app.css'
-  script src="/sprint.min.js"
-  script src="/lazy_loading.js"
-  script src="/search.js"
   == erb :"favicons.html"
 
 body
@@ -27,3 +24,5 @@ body
   .icons
     - @sets.each do |key, set|
       == slim :"_icon_set.html", locals: { set: set }
+
+  script src="/search.js"

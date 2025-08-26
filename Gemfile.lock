@@ -1,25 +1,43 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    base64 (0.2.0)
+    base64 (0.3.0)
     coffee-script (2.4.1)
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
     erubis (2.7.0)
-    execjs (2.7.0)
-    ffi (1.11.1)
-    mustermann (3.0.0)
+    execjs (2.10.0)
+    ffi (1.17.2)
+    ffi (1.17.2-aarch64-linux-gnu)
+    ffi (1.17.2-aarch64-linux-musl)
+    ffi (1.17.2-arm-linux-gnu)
+    ffi (1.17.2-arm-linux-musl)
+    ffi (1.17.2-arm64-darwin)
+    ffi (1.17.2-x86-linux-gnu)
+    ffi (1.17.2-x86-linux-musl)
+    ffi (1.17.2-x86_64-darwin)
+    ffi (1.17.2-x86_64-linux-gnu)
+    ffi (1.17.2-x86_64-linux-musl)
+    logger (1.7.0)
+    mustermann (3.0.4)
       ruby2_keywords (~> 0.0.1)
-    rack (3.0.10)
-    rack-protection (4.0.0)
+    nio4r (2.7.4)
+    puma (6.6.1)
+      nio4r (~> 2.0)
+    rack (3.2.0)
+    rack-protection (4.1.1)
       base64 (>= 0.1.0)
+      logger (>= 1.6.0)
       rack (>= 3.0.0, < 4)
-    rack-session (2.0.0)
+    rack-session (2.1.1)
+      base64 (>= 0.1.0)
       rack (>= 3.0.0)
-    rake (13.2.1)
-    rb-fsevent (0.10.3)
-    rb-inotify (0.10.0)
+    rackup (2.2.1)
+      rack (>= 3)
+    rake (13.3.0)
+    rb-fsevent (0.11.2)
+    rb-inotify (0.11.1)
       ffi (~> 1.0)
     ruby2_keywords (0.0.5)
     sass (3.7.4)
@@ -29,24 +47,37 @@ GEM
       rb-inotify (~> 0.9, >= 0.9.7)
     shotgun (0.9.2)
       rack (>= 1.0)
-    sinatra (4.0.0)
+    sinatra (4.1.1)
+      logger (>= 1.6.0)
       mustermann (~> 3.0)
       rack (>= 3.0.0, < 4)
-      rack-protection (= 4.0.0)
+      rack-protection (= 4.1.1)
       rack-session (>= 2.0.0, < 3)
       tilt (~> 2.0)
     slim (5.2.1)
       temple (~> 0.10.0)
       tilt (>= 2.1.0)
-    temple (0.10.3)
-    tilt (2.3.0)
+    temple (0.10.4)
+    tilt (2.6.1)
 
 PLATFORMS
+  aarch64-linux-gnu
+  aarch64-linux-musl
+  arm-linux-gnu
+  arm-linux-musl
+  arm64-darwin
   ruby
+  x86-linux-gnu
+  x86-linux-musl
+  x86_64-darwin
+  x86_64-linux-gnu
+  x86_64-linux-musl
 
 DEPENDENCIES
   coffee-script
   erubis
+  puma (~> 6.6)
+  rackup (~> 2.2)
   rake
   sass
   shotgun
@@ -54,4 +85,4 @@ DEPENDENCIES
   slim
 
 BUNDLED WITH
-   1.17.2
+   2.7.1

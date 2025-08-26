@@ -6,7 +6,7 @@ require 'coffee-script'
 require 'sass'
 require 'sinatra'
 require 'slim'
-require 'tilt/erubis'
+require 'erubis'
 require 'tilt/coffee'
 require 'tilt/sass'
 require_relative 'icon_set'
@@ -43,6 +43,7 @@ get '/icon/:set/*' do
 
   expires ONE_WEEK, :public
   last_modified File.mtime(filename)
+  content_type 'image/svg+xml'
   send_file filename
 end
 
@@ -63,7 +64,8 @@ get "/sprint.min.js" do
   send_file File.dirname(__FILE__) + '/views/sprint.min.js'
 end
 
-get "/*.js" do
-  filename = params[:splat].first
-  coffee filename.to_sym
+get "/search.js" do
+  content_type 'text/javascript'
+  send_file File.dirname(__FILE__) + "/views/search.js"
 end
+
