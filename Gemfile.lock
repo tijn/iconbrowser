@@ -23,7 +23,7 @@ GEM
     mustermann (3.0.4)
       ruby2_keywords (~> 0.0.1)
     nio4r (2.7.4)
-    puma (6.6.1)
+    puma (7.0.4)
       nio4r (~> 2.0)
     rack (3.2.2)
     rack-protection (4.1.1)
@@ -76,7 +76,7 @@ PLATFORMS
 DEPENDENCIES
   coffee-script
   erubis
-  puma (~> 6.6)
+  puma (~> 7.0)
   rackup (~> 2.2)
   rake
   sass

@@ -9,4 +9,4 @@ gem "slim"
 gem "erubis"
 
 gem "rackup", "~> 2.2"
-gem "puma", "~> 6.6"
+gem "puma", "~> 7.0"
