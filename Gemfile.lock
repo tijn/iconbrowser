@@ -25,7 +25,7 @@ GEM
     nio4r (2.7.4)
     puma (7.1.0)
       nio4r (~> 2.0)
-    rack (3.2.3)
+    rack (3.2.4)
     rack-protection (4.2.1)
       base64 (>= 0.1.0)
       logger (>= 1.6.0)
@@ -33,7 +33,7 @@ GEM
     rack-session (2.1.1)
       base64 (>= 0.1.0)
       rack (>= 3.0.0)
-    rackup (2.2.1)
+    rackup (2.3.1)
       rack (>= 3)
     rake (13.3.1)
     rb-fsevent (0.11.2)
@@ -77,7 +77,7 @@ DEPENDENCIES
   coffee-script
   erubis
   puma (~> 7.1)
-  rackup (~> 2.2)
+  rackup (~> 2.3)
   rake
   sass
   shotgun
